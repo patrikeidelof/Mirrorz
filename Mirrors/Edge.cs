@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="NorthEdge.cs" company="">
+// <copyright file="Edge.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -17,6 +17,7 @@ namespace Mirrors
     public class Edge : ISquare
     {
         private string value;
+
         public Edge(string value)
         {
             this.value = value;

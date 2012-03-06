@@ -34,7 +34,7 @@ namespace Mirrors
         /// <param name="west">
         /// The west.
         /// </param>
-        public Square(bool switched, Square north, Square south, Square east, Square west)
+        public Square(bool switched, ISquare north, ISquare south, ISquare east, ISquare west)
         {
             this.Switched = switched;
             this.north = north;
@@ -43,26 +43,43 @@ namespace Mirrors
             this.east = east;
         }
 
-        /// <summary>
-        /// </summary>
-        protected Square north;
+        public Square()
+        {
+            
+        }
 
         /// <summary>
         /// </summary>
-        protected Square south;
+        private ISquare north;
 
         /// <summary>
         /// </summary>
-        protected Square east;
+        private ISquare south;
 
         /// <summary>
         /// </summary>
-        protected Square west;
+        private ISquare east;
+
+        /// <summary>
+        /// </summary>
+        private ISquare west;
 
         /// <summary>
         /// Gets or sets a value indicating whether Switched.
         /// </summary>
         public bool Switched { get; set; }
+
+        public bool Connected
+        {
+            get
+            {
+                if (north == null || east == null || west == null || south == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
 
         /// <summary>
         /// Gets value from north.
@@ -105,6 +122,62 @@ namespace Mirrors
             get
             {
                 return this.Switched ? this.north.SouthValue : this.south.NorthValue;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public ISquare North
+        {
+            get
+            {
+                return this.north;
+            }
+            set
+            {
+                this.north = value;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public ISquare South
+        {
+            get
+            {
+                return this.south;
+            }
+            set
+            {
+                this.south = value;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public ISquare East
+        {
+            get
+            {
+                return this.east;
+            }
+            set
+            {
+                this.east = value;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public ISquare West
+        {
+            get
+            {
+                return this.west;
+            }
+            set
+            {
+                this.west = value;
             }
         }
     }
